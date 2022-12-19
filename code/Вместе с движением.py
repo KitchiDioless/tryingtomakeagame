@@ -10,10 +10,10 @@ all_sprite = pygame.sprite.Group()
 sprite_bullet = pygame.sprite.Group()
 sprite_platform = pygame.sprite.Group()
 sprite_barrier = pygame.sprite.Group()
-filename_bullet = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\bullet.png' 
-filename_hero = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\pass.png'
-filename_hero_2 = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\walk1.png'
-filename_hero_3 = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\walk2.png'
+filename_bullet = r'project\bullet.png' 
+filename_hero = r'project\pass.png'
+filename_hero_2 = r'project\walk1.png'
+filename_hero_3 = r'project\walk2.png'
 
 def error(sprite):
     sprite.empty()
