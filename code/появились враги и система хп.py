@@ -12,11 +12,11 @@ sprite_barrier = pygame.sprite.Group()
 sprite_enemy = pygame.sprite.Group()
 sprite_reload = pygame.sprite.Group()
 ghost_sprite = pygame.sprite.Sprite()
-filename_bullet = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\bullet.png' 
-filename_hero = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\pass.png'
-filename_hero_2 = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\walk1.png'
-filename_hero_3 = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\walk2.png'
-filename_game_over = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\gameover.png'
+filename_bullet = r'project\bullet.png' 
+filename_hero = r'project\pass.png'
+filename_hero_2 = r'project\walk1.png'
+filename_hero_3 = r'project\walk2.png'
+filename_game_over = r'project\gameover.png'
 
 
 class Hero(pygame.sprite.Sprite):
