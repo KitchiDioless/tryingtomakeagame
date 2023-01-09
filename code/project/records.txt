@@ -1,0 +1,6 @@
+50 AAA
+45 BBB
+55 CCC
+17 Froz
+21 Froz
+27 qwe
