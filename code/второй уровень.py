@@ -1,4 +1,3 @@
-print()
 import pygame
 import sys
 import math
@@ -13,17 +12,17 @@ sprite_barrier = pygame.sprite.Group()
 sprite_enemy = pygame.sprite.Group()
 sprite_reload = pygame.sprite.Group()
 ghost_sprite = pygame.sprite.Sprite()
-filename_bullet = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\bullet.png' 
-filename_hero = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\pass2.png'
-filename_hero_2 = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\walk3.png'
-filename_hero_3 = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\walk4.png'
-filename_reload = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\reload.png'
-filename_exit = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\exit.png'
-filename_background = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\background_level_1.png'
-filename_game_over = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\gameover.png'
-filename_game_win = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\win2.png'
-filename_platform = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\platform.png'
-filename_record = r'C:\Users\frozj\OneDrive\Документы\Python\Нужные фото\project\records.txt'
+filename_bullet = r'project\bullet.png' 
+filename_hero = r'project\pass2.png'
+filename_hero_2 = r'project\walk3.png'
+filename_hero_3 = r'project\walk4.png'
+filename_reload = r'project\reload.png'
+filename_exit = r'project\exit.png'
+filename_background = r'background_level_1.png'
+filename_game_over = r'project\gameover.png'
+filename_game_win = r'project\win2.png'
+filename_platform = r'project\platform.png'
+filename_record = r'project\records.txt'
 f = open(filename_record, 'r+')
 records = {}
 records_zn = []
