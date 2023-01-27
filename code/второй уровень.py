@@ -17,6 +17,7 @@ filename_hero = r'project\pass2.png'
 filename_hero_2 = r'project\walk1.png'
 filename_hero_3 = r'project\walk2.png'
 filename_reload = r'project\reload.png'
+filename_menu = r'project\menu2.png'
 filename_exit = r'project\exit.png'
 filename_background = r'background_level_1.png'
 filename_game_over = r'project\gameover.png'
@@ -215,7 +216,12 @@ class Enemy(pygame.sprite.Sprite):
         sprite_enemy.add(self)
         self.image = pygame.Surface([size[0], size[1]])
         self.rect = pygame.Rect(pos[0], pos[1], size[0], size[1])
-        self.image.fill(pygame.Color("blue"))
+
+        filename_enemy = pygame.image.load(r'project\enemy.png').convert_alpha()
+        filename_enemy = pygame.transform.scale(filename_enemy, (size))
+        self.image.blit(filename_enemy, (0, 0))
+
+        #self.image.fill(pygame.Color("blue"))
         self.strip_hp = pygame.sprite.Sprite()
         sprite_enemy.add(self.strip_hp)
         self.strip_hp.image = pygame.Surface([size[0], 5])
@@ -310,21 +316,24 @@ def main():
     wait_f = False
     while running:
         if part_window == 0:
-            screen.fill((100, 100, 200))
+            #screen.fill((100, 100, 200))
+            filename_menu = pygame.image.load(r'project\menu2.png').convert_alpha()
+            filename_menu = pygame.transform.scale(filename_menu, (width, height))
+            screen.blit(filename_menu, (0, 0))
             y = 0
             for el in records_zn:
-                screen.blit(font_2.render(f'{records[str(el)]} {str(el)}', True, pygame.Color('red')), (700, y))
+                screen.blit(font_2.render(f'{records[str(el)]} {str(el)}', True, pygame.Color('yellow')), (700, y))
                 y += 10
-            pos = [(100, 100), (120, 45)]
-            pygame.draw.rect(screen, pygame.Color('green'), pos, 0)
+            pos = [(150, 150), (120, 45)]
+            pygame.draw.rect(screen, pygame.Color('yellow'), pos, 0)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     coord = event.pos
-                    if 100 <= coord[0] <= 200 and 100 <= coord[1] <= 200:
+                    if 150 <= coord[0] <= 200 and 150 <= coord[1] <= 200:
                         part_window = 1
-            screen.blit(font.render('Start', True, pygame.Color('red')), (100, 100))
+            screen.blit(font.render('Start', True, pygame.Color('black')), (150, 150))
         elif part_window == 1:
             if not draw:
                 coord = X, Y = 0, 0
@@ -336,7 +345,6 @@ def main():
                 rotate_hero = 'r'
                 old_x = 0
                 now_herofile = filename_hero
-                #-----------------------------
                 #background = pygame.image.load(filename_background)
                 hero1 = Hero(filename_hero, 100)
                 if part_draw == 0:
@@ -365,7 +373,6 @@ def main():
                     Enemy((400, 450), (25, 25), 4)
                     Enemy((400, 200), (25, 25), 6)
                     Draw(filename_exit, 940, 0, (20, 20))
-                #--------------------------------
                 ghost_sprite.image = pygame.Surface([hero1.rect.size[0], 10])
                 ghost_sprite.rect = pygame.Rect(0, 0, hero1.rect.size[0], 10)
                 draw = True
@@ -387,7 +394,7 @@ def main():
                 elif count_finish == 3:
                     part_window = 2
                     result = 'win'
-                    continue    
+                    continue
             coord = X, Y = hero1.rect.x, hero1.rect.y
             ghost_sprite.rect = ghost_sprite.rect.move(X-ghost_sprite.rect.x, Y-ghost_sprite.rect.y)
             ghost_sprite.rect.x = X
@@ -474,7 +481,6 @@ def main():
                     reload_screen.update()
                 if event.type == timer_event:
                     timer += 1
-            #---------------------------------
             keys = pygame.key.get_pressed()
             if keys[pygame.K_a] or keys[pygame.K_LEFT]:
                 if sp_x != -4 and rotate_hero == 'r':
@@ -494,7 +500,6 @@ def main():
                 sp_x = 0
             if keys[pygame.K_LEFT] and keys[pygame.K_RIGHT]:
                 sp_x = 0
-            #---------------------------------
             if jump:
                 sp_y = jump_speed
             else:
@@ -534,7 +539,7 @@ def main():
                         sprite_reload.empty()
                         draw = False
                 screen.blit(image_game_win, (0, 0))
-                screen.blit(font.render('Нажмите на любое место', True, pygame.Color('red')), (100, 595))
+                #screen.blit(font.render('Нажмите на любое место', True, pygame.Color('red')), (100, 595))
             elif result == 'loss':
                 image_game_over = pygame.image.load(filename_game_over).convert_alpha()
                 image_game_over = pygame.transform.scale(image_game_over, (width, height))
@@ -551,7 +556,7 @@ def main():
                         sprite_reload.empty()
                         draw = False
                 screen.blit(image_game_over, (0, 0))
-                screen.blit(font.render('Нажмите на любое место', True, pygame.Color('red')), (190, 595))
+                #screen.blit(font.render('Нажмите на любое место', True, pygame.Color('red')), (190, 595))
             count_finish = 0
             timer = 0
         pygame.display.flip()

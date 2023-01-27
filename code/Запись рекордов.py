@@ -14,14 +14,14 @@ sprite_enemy = pygame.sprite.Group()
 sprite_reload = pygame.sprite.Group()
 ghost_sprite = pygame.sprite.Sprite()
 filename_bullet = r'project\bullet.png' 
-filename_hero = r'project\pass2.png'
+filename_hero = r'project\pass.png'
 filename_hero_2 = r'project\walk3.png'
 filename_hero_3 = r'project\walk4.png'
 filename_reload = r'project\reload.png'
 filename_exit = r'project\exit.png'
 filename_background = r'project\background_level_1.png'
-filename_game_over = r'project\gameover.png'
-filename_game_win = r'project\win2.png'
+filename_game_over = r'project\menu2.png'
+filename_game_win = r'project\menu2.png'
 filename_platform = r'project\platform.png'
 filename_record = r'project\records.txt'
 f = open(filename_record, 'r+')
@@ -305,6 +305,8 @@ def main():
     pygame.time.set_timer(timer_event, 1000)
     running, draw = True, False
     result = None
+    background = pygame.image.load(filename_background)
+    screen.blit(background, (0, 0))
     while running:
         if part_window == 0:
             screen.fill((100, 100, 200))
@@ -334,8 +336,6 @@ def main():
                 old_x = 0
                 now_herofile = filename_hero
                 count_finish = 0
-                #-----------------------------
-                #background = pygame.image.load(filename_background)
                 hero1 = Hero(filename_hero, 100)
                 Platform((100, 300), (300, 10))
                 sprite_barrier.add(Platform((100, 200), (100, 10)))
@@ -348,7 +348,6 @@ def main():
                 Enemy((400, 450), (50, 50), 4)
                 Enemy((400, 200), (50, 50), 6)
                 Draw(filename_exit, 940, 0, (20, 20))
-                #--------------------------------
                 ghost_sprite.image = pygame.Surface([hero1.rect.size[0], 10])
                 ghost_sprite.rect = pygame.Rect(0, 0, hero1.rect.size[0], 10)
                 draw = True
@@ -368,7 +367,7 @@ def main():
             ghost_sprite.rect = ghost_sprite.rect.move(X-ghost_sprite.rect.x, Y-ghost_sprite.rect.y)
             ghost_sprite.rect.x = X
             ghost_sprite.rect.y = Y
-            #screen.blit(background, (0, 0))
+            
             screen.fill(pygame.Color('black'))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -432,7 +431,6 @@ def main():
                     reload_screen.update()
                 if event.type == timer_event:
                     timer += 1
-            #---------------------------------
             keys = pygame.key.get_pressed()
             if keys[pygame.K_a] or keys[pygame.K_LEFT]:
                 if sp_x != -4 and rotate_hero == 'r':
@@ -452,7 +450,6 @@ def main():
                 sp_x = 0
             if keys[pygame.K_LEFT] and keys[pygame.K_RIGHT]:
                 sp_x = 0
-            #---------------------------------
             if jump:
                 sp_y = jump_speed
             else:
