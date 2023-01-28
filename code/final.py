@@ -12,7 +12,7 @@ sprite_barrier = pygame.sprite.Group()
 sprite_enemy = pygame.sprite.Group()
 sprite_reload = pygame.sprite.Group()
 ghost_sprite = pygame.sprite.Sprite()
-filename_bullet = r'project\bullet.png' 
+filename_bullet = r'project\bullet.png'
 filename_hero = r'project\pass2.png'
 filename_hero_2 = r'project\walk1.png'
 filename_hero_3 = r'project\walk2.png'
@@ -220,7 +220,7 @@ class Enemy(pygame.sprite.Sprite):
         filename_enemy = pygame.image.load(r'project\enemy.png').convert_alpha()
         filename_enemy = pygame.transform.scale(filename_enemy, (size))
         self.image.blit(filename_enemy, (0, 0))
-
+        self.image.set_colorkey((0, 0, 0))
         #self.image.fill(pygame.Color("blue"))
         self.strip_hp = pygame.sprite.Sprite()
         sprite_enemy.add(self.strip_hp)
@@ -345,7 +345,7 @@ def main():
                 rotate_hero = 'r'
                 old_x = 0
                 now_herofile = filename_hero
-                #background = pygame.image.load(filename_background)
+                background = pygame.image.load(filename_background)###
                 hero1 = Hero(filename_hero, 100)
                 if part_draw == 0:
                     count_finish = 0
@@ -399,8 +399,8 @@ def main():
             ghost_sprite.rect = ghost_sprite.rect.move(X-ghost_sprite.rect.x, Y-ghost_sprite.rect.y)
             ghost_sprite.rect.x = X
             ghost_sprite.rect.y = Y
-            #screen.blit(background, (0, 0))
-            screen.fill(pygame.Color('black'))
+            screen.blit(background, (0, 0))###
+            #screen.fill(pygame.Color('black'))
             for event in pygame.event.get():
                 if wait_f:
                     screen.blit(font.render('Нажмите на клавишу F', True, pygame.Color('red')), (170, 560))
@@ -519,6 +519,7 @@ def main():
                 result = 'loss'
             screen.blit(text_count_reload.render(str(timer), True, pygame.Color('red')), (900, 0))
         elif part_window == 2:
+            screen.fill(pygame.Color('black'))
             if result == 'win':
                 image_game_win = pygame.image.load(filename_game_win).convert_alpha()
                 image_game_win = pygame.transform.scale(image_game_win, (width, height))
@@ -538,8 +539,8 @@ def main():
                         sprite_enemy.empty()
                         sprite_reload.empty()
                         draw = False
+                        timer = 0
                 screen.blit(image_game_win, (0, 0))
-                #screen.blit(font.render('Нажмите на любое место', True, pygame.Color('red')), (100, 595))
             elif result == 'loss':
                 image_game_over = pygame.image.load(filename_game_over).convert_alpha()
                 image_game_over = pygame.transform.scale(image_game_over, (width, height))
@@ -555,10 +556,9 @@ def main():
                         sprite_enemy.empty()
                         sprite_reload.empty()
                         draw = False
+                        timer = 0
                 screen.blit(image_game_over, (0, 0))
-                #screen.blit(font.render('Нажмите на любое место', True, pygame.Color('red')), (190, 595))
             count_finish = 0
-            timer = 0
         pygame.display.flip()
         clock.tick(100)
     f.close()
